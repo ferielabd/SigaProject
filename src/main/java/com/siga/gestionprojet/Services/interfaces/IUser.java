@@ -1,0 +1,16 @@
+package com.siga.gestionprojet.Services.interfaces;
+
+import com.siga.gestionprojet.dao.entities.User;
+
+import java.util.List;
+
+public interface IUser {
+    void add(User a);
+    User edit(User a);
+    List<User> selectAll();
+    User SelectById(int id);
+    void deleteById(int id);
+    User getUserByEmail(String email);
+    User getUserById(int id);
+    //List<User> searchUser(String query);
+}

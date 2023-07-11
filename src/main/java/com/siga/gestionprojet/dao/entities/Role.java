@@ -1,10 +1,12 @@
 package com.siga.gestionprojet.dao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -19,8 +21,9 @@ public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idR;
-    String libelleR;
+    String name;
 
-    @ManyToOne
-    User userR;
+    @OneToMany(mappedBy = "roles")
+    @JsonIgnore
+    List<User> userList;
 }
