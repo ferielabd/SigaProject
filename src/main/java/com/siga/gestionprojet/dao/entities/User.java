@@ -1,10 +1,12 @@
 package com.siga.gestionprojet.dao.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,16 +18,22 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User implements Serializable {
     @Id
-    int cin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int idUser;
+    @Column(unique = true)
+    long cin;
 
     String username;
+    @Column(unique = true)
     String email;
     String password;
     String address;
     String diploma;
     double salary;
-    LocalDate dateBirth;
+    Date dateNaissance=new Date();
     String verifPassword;
+
+    long phone;
 
     boolean active;
 
@@ -43,5 +51,9 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "projet")
     List<Participation_Proj> participation_projs_p;
+
+    @OneToOne
+    @JsonIgnore
+    ImageModel imageModel;
 
 }

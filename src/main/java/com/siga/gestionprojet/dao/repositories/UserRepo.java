@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface UserRepo extends JpaRepository<User,Integer> {
+public interface UserRepo extends JpaRepository<User,Long> {
     User findByEmail(String email);
     @Transactional
     @Modifying

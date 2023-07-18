@@ -45,12 +45,12 @@ public class UserService implements IUser {
     }
 
     @Override
-    public User SelectById(int id) {
+    public User SelectById(long id) {
         return userRepository.findById(id).get();
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         userRepository.deleteById(id);
     }
 
@@ -60,7 +60,7 @@ public class UserService implements IUser {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return userRepository.findById(id).get();
     }
 

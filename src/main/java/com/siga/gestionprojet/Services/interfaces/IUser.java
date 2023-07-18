@@ -8,9 +8,9 @@ public interface IUser {
     void add(User a);
     User edit(User a);
     List<User> selectAll();
-    User SelectById(int id);
-    void deleteById(int id);
+    User SelectById(long id);
+    void deleteById(long id);
     User getUserByEmail(String email);
-    User getUserById(int id);
+    User getUserById(long id);
     //List<User> searchUser(String query);
 }
