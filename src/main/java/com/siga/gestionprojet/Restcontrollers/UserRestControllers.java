@@ -1,4 +1,5 @@
 package com.siga.gestionprojet.Restcontrollers;
+
 import com.siga.gestionprojet.Services.Classes.EmailService;
 import com.siga.gestionprojet.Services.interfaces.IGestionProjet;
 import com.siga.gestionprojet.Services.interfaces.IUser;
@@ -6,7 +7,6 @@ import com.siga.gestionprojet.dao.entities.ImageModel;
 import com.siga.gestionprojet.dao.entities.User;
 import com.siga.gestionprojet.dao.repositories.ImageModelRepo;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -65,7 +65,7 @@ public class UserRestControllers {
         } else if (!user.getEmail().matches("^.+@.+\\..+$")) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("un problème au niveau de saise du mail");
 
-        } else if (!user.getVerifPassword().matches(user.getPassword()) || !testMotdepasse) {
+        } else if (!user.getVerifPassword().matches(user.getPassword()) || !(testMotdepasse)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("verifiez le mot de passe ");
 
         }

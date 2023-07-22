@@ -43,7 +43,7 @@ public class SigaProjectRestControllers {
                         .withSubject(user.getEmail())
                         .withExpiresAt(new Date(System.currentTimeMillis() + 10 * 60 * 1000))
                         .withIssuer(request.getRequestURL().toString())
-                        .withClaim("roles", user.getRoles().getName())
+                        .withClaim("roles", user.getRoles().getClass().getName())
                         .sign(algorithm);
                 String refresh_token = JWT.create()
                         .withSubject(user.getEmail())

@@ -31,7 +31,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        if(request.getServletPath().equals("/MicroGrowth/login") || request.getServletPath().equals("/MicroGrowth/token/refresh")){
+        if(request.getServletPath().equals("/Siga/login") || request.getServletPath().equals("/Siga/token/refresh")){
             filterChain.doFilter(request,response);
         }
         else {

@@ -18,14 +18,16 @@ import java.util.List;
 
 public class Client implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int idClient;
     String taxRegistration;
     String name;
     String mail;
     long phone;
     String address;
 
-    @OneToMany(mappedBy = "client")
-    List<ContratProjet> projetList;
+  @OneToMany(mappedBy = "client")
+    List<Projet> projets;
 
 
 }

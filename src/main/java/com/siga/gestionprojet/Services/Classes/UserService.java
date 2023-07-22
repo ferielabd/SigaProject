@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -30,7 +31,7 @@ public class UserService implements IUser {
         a.setPassword(passwordEncoder.encode(a.getPassword()));
         a.setActive(false);
         Role r= roleRepository.findById(1).get();
-        a.setRoles(r);
+        a.setRoles((Set<Role>) r);
         userRepository.save(a);
     }
 
@@ -45,12 +46,12 @@ public class UserService implements IUser {
     }
 
     @Override
-    public User SelectById(long id) {
+    public User SelectById(int id) {
         return userRepository.findById(id).get();
     }
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         userRepository.deleteById(id);
     }
 
@@ -60,7 +61,7 @@ public class UserService implements IUser {
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(int id) {
         return userRepository.findById(id).get();
     }
 

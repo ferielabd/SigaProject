@@ -4,10 +4,13 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -22,16 +25,20 @@ public class User implements Serializable {
     int idUser;
     @Column(unique = true)
     long cin;
-
+    @NotEmpty
+    @Column(name = "username")
     String username;
-    @Column(unique = true)
-    String email;
+    @NotEmpty
+    @Email
+    @Column(name = "email", unique = true)
+    private String email;
     String password;
+    String verifPassword;
     String address;
     String diploma;
     double salary;
     Date dateNaissance=new Date();
-    String verifPassword;
+
 
     long phone;
 
@@ -41,19 +48,25 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "userS")
     List<Specialite> specialiteUList;
 
-    @ManyToOne
-    Role roles;
+
     @OneToMany(mappedBy = "userDep")
     List<Departement> departementUList;
 
-    @OneToMany(mappedBy = "user")
-    List<Participation_Proj> participation_projs_user;
 
-    @OneToMany(mappedBy = "projet")
-    List<Participation_Proj> participation_projs_p;
+    @OneToMany(mappedBy = "user")
+    private Set<ProjectAssignment> projectAssignments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<WorkRecord> workRecords = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_roles_assignment",
+            joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name = "id_user_role"))
+    private Set<Role> roles = new HashSet<>();
 
     @OneToOne
     @JsonIgnore
     ImageModel imageModel;
+
 
 }

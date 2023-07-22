@@ -45,7 +45,7 @@ public class GestionProjetService implements IGestionProjet,UserDetailsService {
                 log.info("user found in the database: {}", email);
             }
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getRoles().getName()));
+            authorities.add(new SimpleGrantedAuthority(user.getRoles().getClass().getName()));
             return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
         }
         else {

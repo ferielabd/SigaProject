@@ -1,0 +1,62 @@
+package com.siga.gestionprojet.dto;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+public class ProjectAssignmentDTO {
+
+    private Integer id;
+    private ProjectDTOLight project;
+    private LocalDate validFrom;
+    private LocalDate validTo;
+    private UserDTOLight user;
+    private Set<ProjectRoleDTO> projectRoles = new HashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public ProjectDTOLight getProject() {
+        return project;
+    }
+
+    public void setProject(ProjectDTOLight project) {
+        this.project = project;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserDTOLight getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTOLight user) {
+        this.user = user;
+    }
+
+    public Set<ProjectRoleDTO> getProjectRoles() {
+        return projectRoles;
+    }
+
+    public void setProjectRoles(Set<ProjectRoleDTO> projectRoles) {
+        this.projectRoles = projectRoles;
+    }
+
+    public LocalDate getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(LocalDate validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public LocalDate getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(LocalDate validTo) {
+        this.validTo = validTo;
+    }
+}

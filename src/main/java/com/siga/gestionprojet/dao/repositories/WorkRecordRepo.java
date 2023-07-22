@@ -1,0 +1,28 @@
+package com.siga.gestionprojet.dao.repositories;
+
+import com.siga.gestionprojet.dao.entities.WorkRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+@Repository
+public interface WorkRecordRepo extends JpaRepository<WorkRecord, Integer> {
+
+    @Query("SELECT w FROM WorkRecord w WHERE w.user.idUser = :userId AND NOT (:dateFrom >= w.dateTo OR :dateTo <= w.dateFrom)")
+    List<WorkRecord> findRecordsThatOverlap(@Param("dateFrom") LocalDateTime dateFrom, @Param("dateTo") LocalDateTime dateTo, @Param("userId") Integer userId);
+
+    @Query("SELECT w FROM WorkRecord w WHERE w.dateFrom >= :dateFrom AND w.dateTo < :dateTo")
+    List<WorkRecord> findAllBetween(@Param("dateFrom") LocalDateTime dateFromInclusive, @Param("dateTo") LocalDateTime dateToExclusive);
+
+    @Query("SELECT w FROM WorkRecord w WHERE w.dateFrom >= :dateFrom AND w.dateTo < :dateTo AND w.user.idUser = :userId")
+    List<WorkRecord> findAllBetweenByUserId(@Param("dateFrom") LocalDateTime fromInclusive, @Param("dateTo") LocalDateTime toExclusive, @Param("userId") Integer userId);
+
+    @Query("SELECT w FROM WorkRecord w WHERE w.dateFrom >= :dateFrom AND w.dateTo < :dateTo AND w.project.id = :projectId")
+    List<WorkRecord> findAllBetweenByProjectId(@Param("dateFrom") LocalDateTime fromInclusive, @Param("dateTo") LocalDateTime toExclusive, @Param("projectId") Integer projectId);
+
+    @Query("SELECT w FROM WorkRecord w WHERE w.dateFrom >= :dateFrom AND w.dateTo < :dateTo AND w.user.idUser = :userId AND w.project.id = :projectId")
+    List<WorkRecord> findAllBetweenByUserIdAndProjectId(@Param("dateFrom") LocalDateTime fromInclusive, @Param("dateTo") LocalDateTime toExclusive, @Param("userId") Integer userId, @Param("projectId") Integer projectId);
+}
