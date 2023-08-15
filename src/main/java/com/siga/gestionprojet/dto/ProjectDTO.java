@@ -1,12 +1,18 @@
 package com.siga.gestionprojet.dto;
 
+import lombok.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProjectDTO {
 
     private Integer id;
@@ -16,53 +22,6 @@ public class ProjectDTO {
     private LocalDate end;
     private List<WorkTypeDTO> workTypes = new ArrayList<>();
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDate end) {
-        this.end = end;
-    }
-
-    public List<WorkTypeDTO> getWorkTypes() {
-        return workTypes;
-    }
-
-    public void setWorkTypes(List<WorkTypeDTO> workTypes) {
-        this.workTypes = workTypes;
-    }
 
     @Override
     public boolean equals(Object o) {

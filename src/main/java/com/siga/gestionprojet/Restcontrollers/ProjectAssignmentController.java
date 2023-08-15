@@ -42,7 +42,7 @@ public class ProjectAssignmentController {
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<ProjectAssignmentDTO> create(@Valid @RequestBody CreateOrUpdateProjectAssignmentRequest request) {
-        ProjectAssignment projectAssignment = projectAssignmentService.create(request.getProjectId(), request.getUserId(), request.getValidFrom(), request.getValidTo(), request.getProjectRoleNames());
+        ProjectAssignment projectAssignment = projectAssignmentService.create(request.getProjectId(), request.getUserId(), request.getValidFrom(), request.getValidTo(), request. getProjectRoleNames());
         ProjectAssignmentDTO result = restModelMapper.map(projectAssignment, ProjectAssignmentDTO.class);
         return ResponseEntity.ok(result);
     }

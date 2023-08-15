@@ -1,9 +1,15 @@
 package com.siga.gestionprojet.dto;
 
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserDTO {
 
     private Integer id;
@@ -14,61 +20,6 @@ public class UserDTO {
     private AuthProvider authProvider;
     private List<UserRoleDTO> userRoles = new ArrayList<>();
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public AuthProvider getAuthProvider() {
-        return authProvider;
-    }
-
-    public void setAuthProvider(AuthProvider authProvider) {
-        this.authProvider = authProvider;
-    }
-
-    public String getPictureUrl() {
-        return pictureUrl;
-    }
-
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
-    }
-
-    public List<UserRoleDTO> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(List<UserRoleDTO> userRoles) {
-        this.userRoles = userRoles;
-    }
 
     @Override
     public boolean equals(Object o) {
